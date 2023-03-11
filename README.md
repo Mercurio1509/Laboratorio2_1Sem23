@@ -4,7 +4,7 @@ Para este laboratorio se utilizará el simulador SimpleScalar, el cual es una pl
 
 ## Máquina virtual a utilizar
 
-Para el laboratorio es necesario utilizar una máquina virtual...
+Para el laboratorio es necesario utilizar una máquina virtual, la podrá descargar [aquí]()
 
 ## Uso del simulador
 
@@ -34,14 +34,14 @@ Esta versión de sim-outorder se encuentra en la máquina vitual en la siguiente
 
 ### Compiar el código fuente
 
-Para compilar el código fuente puede utilice.
+Para compilar el código fuente utilice.
 
 `sslittle-na-sstrix-gcc`
 
 Este toolchain se encuentra en la máquina virtual en la siguiente dirección: `$HOME/simplescalar/bin`
 
 
-### Arreglo 2D
+## Arreglo 2D
 
 Se implementará un programa en C que llenará una matriz de dos dimensiones, el mismo se reliza con dos lazos, para asignar los datos a la matriz, se utiliza la suma del índice del lazo interno y externo actual, osea `A[i][j]=i+j;`
 
@@ -51,7 +51,7 @@ for (i = 0; i < SIZE; i++)
 	for (j = 0; j < SIZE; j++)
 		A[i][j] = i + j;
 ```
-Se analizaŕa el rendimiento y el consumo de potencia, de este sencillo programa s realzará desde dos puntos de vista:
+Se analizaŕá el rendimiento y el consumo de potencia, de este sencillo programa, esto desde dos puntos de vista:
 
 * El efecto de las transformaciones de lazo.
 * El efecto de la optmizacion del compilador.
@@ -61,7 +61,7 @@ Se analizaŕa el rendimiento y el consumo de potencia, de este sencillo programa
 
 Usted realizará la transformación de lazos al código de arreglo 2D, utilizando distintas dimensiones para la variable `SIZE`: 16x16, 32x23, 64x64, 128x128. Para este experimento utilice la configuración de la caché presentada anteriomente.
 
-La siguiente lista presenta posbles transformaciones de lazo a realidaz. Note que se pueden implementar y analizar las transformaciones de manera independente o bien combinadas para cada tamaño del arreglo, además algunas transformacioes sólo tienen sentido para tamaños especificos.
+La siguiente lista presenta posibles transformaciones de lazo a realizar. Note que se pueden implementar y analizar las transformaciones de manera independente o bien combinadas para cada tamaño del arreglo, además algunas transformacioes sólo tienen sentido para tamaños especificos.
 
 * Loop permutatin
 * Loop unrrolling
@@ -71,7 +71,7 @@ La siguiente lista presenta posbles transformaciones de lazo a realidaz. Note qu
 
 En esta secciones se desea medir el efecto de los niveles de optimizacion del compilador. Para en el que el arreglo tiene dimensión 32x32, analice para los siguientes niveles de optimización: 00, 01, 02, 03.
 
-### Aplicaciones
+## Aplicaciones
 
 Usted modificará tres aplicaciones tratando de hacer su ejecución lo más eficiente posible. Para
 ello, utilice las transformaciones de lazos y la optimización del compilador ya probadas. Usted es
@@ -88,7 +88,7 @@ rendimiento.
 
 Deberá brindar, como parte de la entrega de este proyecto, las versiones finales para las aplicacionescon las que logró obtener el mejor rendimiento.
 
-#### Mediciónes y análisis
+## Mediciónes y análisis
 
 Para las transformaciones aplicadas, así como para los diferentes niveles de optimización probados y modificaciones a la configuración de la caché, extraiga los siguientes datos de los reportes generados por el simulador:
 
