@@ -36,14 +36,20 @@ Esta versión de sim-outorder se encuentra en la máquina vitual en la siguiente
 
 Para compilar el código fuente utilice.
 
-`sslittle-na-sstrix-gcc`
+`sslittle-na-sstrix-gcc -O0 hello.c -o hello`
+
+o en caso de errores puede intentar:
+
+`sslittle-na-sstrix-gcc -x c++ hello.c -o hello`
 
 Este toolchain se encuentra en la máquina virtual en la siguiente dirección: `$HOME/simplescalar/bin`
 
+Recomendación: exporte al PATH los directorios mencionados anteriormente. De forma permanente en el archivo `.bashrc`
+[Guía](https://phoenixnap.com/kb/linux-add-to-path)
 
 ## Arreglo 2D
 
-Se implementará un programa en C que llenará una matriz de dos dimensiones, el mismo se reliza con dos lazos, para asignar los datos a la matriz, se utiliza la suma del índice del lazo interno y externo actual, osea `A[i][j]=i+j;`
+Se implementará un programa en C que llenará una matriz de dos dimensiones, el mismo se realiza con dos lazos, para asignar los datos a la matriz, se utiliza la suma del índice del lazo interno y externo actual, osea `A[i][j]=i+j;`
 
 
 ```
@@ -69,7 +75,7 @@ La siguiente lista presenta posibles transformaciones de lazo a realizar. Note q
 
 #### Niveles de optimización del compilador 
 
-En esta secciones se desea medir el efecto de los niveles de optimizacion del compilador. Para en el que el arreglo tiene dimensión 32x32, analice para los siguientes niveles de optimización: 00, 01, 02, 03.
+En esta secciones se desea medir el efecto de los niveles de optimizacion del compilador. Para en el que el arreglo tiene dimensión 32x32, analice para los siguientes niveles de optimización: O0, O1, O2, O3.
 
 ## Aplicaciones
 
@@ -88,7 +94,7 @@ rendimiento.
 
 Deberá brindar, como parte de la entrega de este proyecto, las versiones finales para las aplicacionescon las que logró obtener el mejor rendimiento.
 
-## Mediciónes y análisis
+## Mediciones y análisis
 
 Para las transformaciones aplicadas, así como para los diferentes niveles de optimización probados y modificaciones a la configuración de la caché, extraiga los siguientes datos de los reportes generados por el simulador:
 
