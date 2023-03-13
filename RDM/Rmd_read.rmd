@@ -1,0 +1,25 @@
+---
+title: "Plot Data"
+author: "Your Name"
+output: html_document
+---
+
+## Introduction
+
+This is an example R Markdown document to plot data from a text file.
+
+### Data
+
+Here's how we can read in the data from the file:
+
+```{r}
+data <- read.table("data.txt")
+```
+
+### Plot
+
+Here's a scatter plot of the data:
+
+```{r}
+plot(data$X, data$Y, main = "Scatter Plot of X vs Y")
+```
