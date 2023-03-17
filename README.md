@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # Laboratorio 2
 
 Para este laboratorio se utilizará el simulador SimpleScalar, el cual es
