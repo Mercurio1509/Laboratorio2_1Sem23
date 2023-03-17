@@ -1,0 +1,2 @@
+export PATH=$PATH:$HOME/simplescalar/bin
+export PATH=$PATH:$HOME/wattch/sim-wattch-1.02d
