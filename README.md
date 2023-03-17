@@ -42,8 +42,8 @@ Este toolchain se encuentra en la máquina virtual en la siguiente
 dirección: `$HOME/simplescalar/bin`
 
 Recomendación: exporte al PATH los directorios mencionados
-anteriormente. De forma permanente en el archivo `.bashrc`
-[Guía](https://phoenixnap.com/kb/linux-add-to-path)
+anteriormente de forma permanente en el archivo `.bashrc`
+([guía](https://phoenixnap.com/kb/linux-add-to-path))
 
     export PATH=$HOME/wattch/sim-wattch-1.02d:$PATH
     export PATH=$HOME/simplescalar/bin:$PATH
@@ -52,7 +52,7 @@ anteriormente. De forma permanente en el archivo `.bashrc`
 
 La configuración base que usted utilizará en este laboratorio es:
 
-|                     | L1 Inst | L2 Data | L3 Unified |
+|                     | L1 Inst | L1 Data | L2 Unified |
 |---------------------|---------|---------|------------|
 | Tamaño (KB)         | 8       | 8       | 128        |
 | Número de conjuntos | 256     | 256     | 4096       |
@@ -67,7 +67,7 @@ forma.
 Esta versión de sim-outorder se encuentra en la máquina vitual en la
 siguiente dirección: `$HOME/wattch/sim-wattch-1.02d`
 
-## Arreglo 2D
+## Parte 1: Arreglo 2D
 
 Usted empleará un pequeño programa en C que llenará una matriz de dos
 dimensiones, el mismo se realiza con dos lazos. Para asignar los datos a
@@ -109,48 +109,26 @@ Reporte y analice brevemente para cada uno de los tipos de trasformación utiliz
 
 En esta sección se desea medir el efecto de los niveles de
 optimizacion del compilador. Para en el que el arreglo tiene dimensión
-32x32, reporte y analice brevemente para los siguientes niveles de optimización: O0, O1, O2, O3.
+32x32, reporte y analice brevemente para los siguientes niveles de optimización: `O0`, `O1`, `O2`, `O3`.
 
-## Aplicaciones
+## Parte 2: _Benchmark_
 
-Usted modificará tres aplicaciones tratando de hacer su ejecución lo más
-eficiente posible. Para ello, utilice las transformaciones de lazos y la
-optimización del compilador ya probadas. Usted es libre de determinar
-dónde aplicar las transformaciones en el código, pero tenga en cuenta
-que las transformaciones que introduzca no deben alterar los resultados
-producidos por la aplicación. Se proporciona el código para estas
-aplicaciones:
+### Optimización del compilador 
+Usted ejecutará las 5 aplicaciones con las diferentes nivels de optimización del compilador y la configuración de la caché base descrita. Reporte y discuta brevemente el efecto de las diferentes optimizaciones.
 
--   Multiplicación de matrices
--   FFT
--   ADPCM
--   AES
--   JPEG
 
-Considere además el efecto de los diferentes niveles de optimización y
-varíe la configuración de la jerarquía de memoria en particular el nivel
-L1 de datos y reporte sobre el efecto en el rendimiento.
+### Configuración de la caché
+Considere además el efecto de modificar la jerarquía de memoria, particularmente el nivel L1 de datos. Proponga al menos 5 diferentes escenarios para esta memoria caché en donde varíe el nivel de asociatividad (y por lo tanto la cantidad de conjuntos), el tamaño de la línea de caché y la estrategia de reemplazo de bloque (LRU, FIFO, random). En todo caso, el tamaño de esta memoria no debe cambiar y el nivel de optimización en la compilación debe ser `O0`.
 
-Deberá brindar, como parte de la entrega de este proyecto, las versiones
-finales para las aplicaciones con las que logró obtener el mejor
-rendimiento.
+Reporte y discuta brevemente los resultados obtenidos para los diferentes escenarios y para las 5 aplicaciones. Utilice la media geométrica para determinar cuál es la mejor configuración tomando en cuenta el rendimiento de la caché y el tiempo de ejecución.
 
 ## Mediciones y análisis
 
-Para las transformaciones aplicadas, así como para los diferentes
-niveles de optimización probados y modificaciones a la configuración de
-la caché, extraiga los siguientes datos de los reportes generados por el
-simulador:
+Para todas las experimentaciones que realizará en este laboratorio, extraiga los siguientes datos de los reportes generados por el simulador:
 
 -   Potencia consumida por el software.
 -   Número de instrucciones ejecutadas y tiempo de ejecución.
 -   Rendimiento de caché.
-
-Realice un análisis al respecto de los resultados obtenidos. Para la
-ejecución de los diferentes escenarios de prueba, así como para la
-extracción de la información relevante proveniente del reporte de
-ejecución del simulador, usted deberá desarrollar un script de Python
-que le permita automatizar el proceso.
 
 
 ## Evaluación
