@@ -92,8 +92,7 @@ utilizando distintas dimensiones para la variable `SIZE`: 16x16, 32x23,
 64x64, 128x128. Para este experimento utilice la configuración de la
 caché presentada anteriomente.
 
-La siguiente lista presenta posibles [transformaciones de lazo] a
-realizar(https://tecnube1-my.sharepoint.com/:b:/g/personal/jocastro_itcr_ac_cr/EcnKvkGM_XdFmy0fuHxgxecBVO4s_YqyxplXeqCuH0X5JA?e=88hV0w). 
+La siguiente lista presenta posibles [transformaciones de lazo](https://tecnube1-my.sharepoint.com/:b:/g/personal/jocastro_itcr_ac_cr/EcnKvkGM_XdFmy0fuHxgxecBVO4s_YqyxplXeqCuH0X5JA?e=88hV0w) a realizar. 
 
 -   Loop permutation
 -   Loop unrrolling
