@@ -6,11 +6,7 @@
 <br/><br/>
 
 ## Preámbulo
-Ene ste segundo laboratorio, usted experimentará el efecto que tienen la transformación de lazos, las optimizaciones del compilador y la jerarquía de memoria en el rendimiento de un procesador. Para la experimentación se usará un conjunto de aplicaciones de prueba, que incluye un arreglo de dos dimensiones, y otras cinco aplicaciones: _matrix multiplication_}, _Fast Fourier Transform_ (FFT), _Adaptive Differential Pulse Code Modulation_ (ADPCM), _Advanced Encryption Standard_ (AES) y JPEG, las cuales provienen del _benchmark CHStone_ [1].
-
-Para este laboratorio se utilizará el simulador SimpleScalar, el cual es
-una plataforma modular para la investigación de la arquitectura de
-sistemas computacionales.
+En este segundo laboratorio, usted experimentará el efecto que tienen la transformación de lazos, las optimizaciones del compilador y la jerarquía de memoria en el rendimiento de un procesador. Para la experimentación se usará un conjunto de aplicaciones de prueba, que incluye un arreglo de dos dimensiones, y otras cinco aplicaciones: _matrix multiplication_, _Fast Fourier Transform_ (FFT), _Adaptive Differential Pulse Code Modulation_ (ADPCM), _Advanced Encryption Standard_ (AES) y JPEG, las cuales provienen del _benchmark CHStone_ [1].
 
 Para esta experimentación se utilizará el simulador (algo antiguo) llamado *SimpleScalar*, el cual es "una plataforma modular para la investigación de la arquitectura de sistemas computacionales". *SimpleScalar* permite realizar exploraciones del espacio de diseño de procesadores superscalares y entre los parámetros que se pueden explorar están la configuración de la memoria caché y del predictor de saltos. *Wattch* es una plataforma basada en *SimpleScalar* que permite la exploración y análisis de consumo de energía para un software en particular. Dicho simulador se encuentra disponible en una máquina virtual, la cual podrá descargar de [aquí](https://tecnube1-my.sharepoint.com/:f:/g/personal/jocastro_itcr_ac_cr/Et2j-bTKL4JFjir2rtHyKZwBde69Je0A8aKH2xubgCNBcw?e=95nDK0), y que ha sido preparada para este laboratorio 2 (usuario: _arquitectura_, contraseña: _ARQUI_)
 
@@ -34,19 +30,22 @@ Para compilar el código fuente utilice.
 El `-O0` indica que se utiliza el nivel de optimización 0, hay 4 niveles
 lo cuales tendrá que variar durante las pruebas `O0`, `O1`, `O2` y `O3`.
 
-o en caso de errores puede intentar:
+Este toolchain se encuentra, en la máquina virtual, en la siguiente
+dirección: `$HOME/simplescalar/bin`. 
 
-`sslittle-na-sstrix-gcc -x c++ hello.c -o hello`
+**Recomendación**: exporte al PATH los directorios mencionados anteriormente de forma permanente en el archivo `.bashrc`
+([guía](https://phoenixnap.com/kb/linux-add-to-path)). 
 
-Este toolchain se encuentra en la máquina virtual en la siguiente
-dirección: `$HOME/simplescalar/bin`
+```bash
+export PATH=$HOME/wattch/sim-wattch-1.02d:$PATH
+export PATH=$HOME/simplescalar/bin:$PATH
+```
 
-Recomendación: exporte al PATH los directorios mencionados
-anteriormente de forma permanente en el archivo `.bashrc`
-([guía](https://phoenixnap.com/kb/linux-add-to-path))
+Usted puede utilizar el archivo `tools.setup` para cargar los directorios de las herramientas a utilizar en este laboratorio en la variable `$PATH`, haciendo
 
-    export PATH=$HOME/wattch/sim-wattch-1.02d:$PATH
-    export PATH=$HOME/simplescalar/bin:$PATH
+```bash
+source tools.setup
+```
 
 ### Configuración de la caché
 
@@ -62,7 +61,9 @@ La configuración base que usted utilizará en este laboratorio es:
 La configuración anterior se configura en el simulador de la siguiente
 forma.
 
-`sim-outorder -cache:dl1 dl1:256:32:1:l -cache:il1 il1:256:32:1:l  -cache:il2 dl2 -cache:dl2 dl2:4096:32:1:l <binary>`
+```bash
+sim-outorder -cache:dl1 dl1:256:32:1:l -cache:il1 il1:256:32:1:l  -cache:il2 dl2 -cache:dl2 dl2:4096:32:1:l <binary>
+```
 
 Esta versión de sim-outorder se encuentra en la máquina vitual en la
 siguiente dirección: `$HOME/wattch/sim-wattch-1.02d`
@@ -72,7 +73,7 @@ siguiente dirección: `$HOME/wattch/sim-wattch-1.02d`
 Usted empleará un pequeño programa en C que llenará una matriz de dos
 dimensiones, el mismo se realiza con dos lazos. Para asignar los datos a
 la matriz, se utiliza la suma del índice del lazo interno y externo
-actual, i.e., `A[i][j]=i+j;`
+actual, i.e., `A[i][j]=i+j`.
 
 ```c
     for (i = 0; i < SIZE; i++)
@@ -87,22 +88,23 @@ En esta sección del laboratorio, usted analizará el rendimiento y el consumo d
 
 ### Transformación de lazos
 
-Usted realizará la transformación de lazos al código de arreglo 2D,
-utilizando distintas dimensiones para la variable `SIZE`: 16x16, 32x23,
-64x64, 128x128. Para este experimento utilice la configuración de la
-caché presentada anteriomente.
+Usted realizará la transformación de lazos al código de arreglo 2D, utilizando
+distintas dimensiones para la variable `SIZE`: 16x16, 32x23, 64x64, 128x128.
+Para este experimento utilice la configuración de la caché presentada
+anteriomente.
 
 La siguiente lista presenta posibles [transformaciones de lazo](https://tecnube1-my.sharepoint.com/:b:/g/personal/jocastro_itcr_ac_cr/EcnKvkGM_XdFmy0fuHxgxecBVO4s_YqyxplXeqCuH0X5JA?e=88hV0w) a realizar. 
 
 -   Loop permutation
 -   Loop unrrolling
 -   Loop tiling
--   
+
+
 Note que se pueden implementar y analizar las transformaciones
 de manera independente o bien combinadas para cada tamaño del arreglo,
 además algunas transformaciones, como loop tiling, sólo tienen sentido para tamaños especificos.
 
-Reporte y analice brevemente para cada uno de los tipos de trasformación utilizados.
+Reporte y analice brevemente para cada uno de los tipos de trasformación utilizados. Agregue los archivos generados, a partir de `array.c`, en su repositorio.
 
 ### Niveles de optimización del compilador
 
@@ -113,13 +115,13 @@ optimizacion del compilador. Para en el que el arreglo tiene dimensión
 ## Parte 2: _Benchmark_
 
 ### Optimización del compilador 
-Usted ejecutará las 5 aplicaciones con las diferentes nivels de optimización del compilador y la configuración de la caché base descrita. Reporte y discuta brevemente el efecto de las diferentes optimizaciones.
+Usted ejecutará las 5 aplicaciones con las diferentes niveles de optimización del compilador y la configuración de la caché base descrita. Reporte y discuta brevemente el efecto de las diferentes optimizaciones.
 
 
 ### Configuración de la caché
-Considere además el efecto de modificar la jerarquía de memoria, particularmente el nivel L1 de datos. Proponga al menos 5 diferentes escenarios para esta memoria caché en donde varíe el nivel de asociatividad (y por lo tanto la cantidad de conjuntos), el tamaño de la línea de caché y la estrategia de reemplazo de bloque (LRU, FIFO, random). En todo caso, el tamaño de esta memoria no debe cambiar y el nivel de optimización en la compilación debe ser `O0`.
+Considere además el efecto de modificar la jerarquía de memoria, particularmente el nivel L1 de la caché de datos. Proponga al menos 5 diferentes escenarios para esta memoria caché en donde varíe el nivel de asociatividad (y por lo tanto la cantidad de conjuntos), el tamaño de la línea de caché y la estrategia de reemplazo de bloque (LRU, FIFO o random). En todo caso, el tamaño de esta memoria caché no debe cambiar y el nivel de optimización en la compilación debe ser `O0`.
 
-Reporte y discuta brevemente los resultados obtenidos para los diferentes escenarios y para las 5 aplicaciones. Utilice la media geométrica para determinar cuál es la mejor configuración tomando en cuenta el rendimiento de la caché y el tiempo de ejecución.
+Reporte y discuta brevemente los resultados obtenidos para los diferentes escenarios y para las 5 aplicaciones. Para el caso de las modifiaciones de la caché L1 de datos, utilice la media geométrica para determinar cuál es la mejor configuración tomando en cuenta el rendimiento de la caché y el tiempo de ejecución.
 
 ## Mediciones y análisis
 
